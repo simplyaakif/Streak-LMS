@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="0f95afd6-8758-4e6f-9eff-259e84acfcc8" name="Aakif VPS WWW">
+        <fileTransfer rootFolder="/var/www" accessType="SFTP" host="157.90.18.185" port="22" sshConfigId="dbb037aa-fd84-418c-b7d6-9a2df2866480" sshConfig="Aakif VPS">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
