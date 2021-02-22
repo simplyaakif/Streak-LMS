@@ -288,7 +288,7 @@
 <script>
     Dropzone.options.dpDropzone = {
     url: '{{ route('admin.employees.storeMedia') }}',
-    maxFilesize: 10, // MB
+    maxFilesize: 5, // MB
     acceptedFiles: '.jpeg,.jpg,.png,.gif',
     maxFiles: 1,
     addRemoveLinks: true,
@@ -296,9 +296,9 @@
       'X-CSRF-TOKEN': "{{ csrf_token() }}"
     },
     params: {
-      size: 10,
-      width: 4096,
-      height: 4096
+      size: 5,
+      width: 1000,
+      height: 1000
     },
     success: function (file, response) {
       $('form').find('input[name="dp"]').remove()

@@ -167,7 +167,7 @@
             </li>
         @endcan
         @can('academic_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/courses*") ? "c-show" : "" }} {{ request()->is("admin/course-durations*") ? "c-show" : "" }} {{ request()->is("admin/batches*") ? "c-show" : "" }}">
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/courses*") ? "c-show" : "" }} {{ request()->is("admin/course-durations*") ? "c-show" : "" }} {{ request()->is("admin/batches*") ? "c-show" : "" }} {{ request()->is("admin/certificates*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fas fa-align-justify c-sidebar-nav-icon">
 
@@ -202,6 +202,16 @@
 
                                 </i>
                                 {{ trans('cruds.batch.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('certificate_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.certificates.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/certificates") || request()->is("admin/certificates/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-certificate c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.certificate.title') }}
                             </a>
                         </li>
                     @endcan
@@ -241,7 +251,7 @@
             </li>
         @endcan
         @can('examination_managment_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/tests*") ? "c-show" : "" }} {{ request()->is("admin/questions*") ? "c-show" : "" }} {{ request()->is("admin/question-options*") ? "c-show" : "" }} {{ request()->is("admin/test-results*") ? "c-show" : "" }}">
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/tests*") ? "c-show" : "" }} {{ request()->is("admin/questions*") ? "c-show" : "" }} {{ request()->is("admin/question-options*") ? "c-show" : "" }} {{ request()->is("admin/test-results*") ? "c-show" : "" }} {{ request()->is("admin/test-answers*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fas fa-pen-alt c-sidebar-nav-icon">
 
@@ -286,6 +296,16 @@
 
                                 </i>
                                 {{ trans('cruds.testResult.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('test_answer_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.test-answers.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/test-answers") || request()->is("admin/test-answers/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-ellipsis-v c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.testAnswer.title') }}
                             </a>
                         </li>
                     @endcan
@@ -355,7 +375,7 @@
             </li>
         @endcan
         @can('notification_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/user-alerts*") ? "c-show" : "" }} {{ request()->is("admin/batch-notifications*") ? "c-show" : "" }} {{ request()->is("admin/staff-notifications*") ? "c-show" : "" }}">
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/user-alerts*") ? "c-show" : "" }} {{ request()->is("admin/batch-notifications*") ? "c-show" : "" }} {{ request()->is("admin/staff-notifications*") ? "c-show" : "" }} {{ request()->is("admin/sms-templates*") ? "c-show" : "" }} {{ request()->is("admin/email-templates*") ? "c-show" : "" }} {{ request()->is("admin/institution-calendars*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fas fa-paper-plane c-sidebar-nav-icon">
 
@@ -390,6 +410,36 @@
 
                                 </i>
                                 {{ trans('cruds.staffNotification.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('sms_template_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.sms-templates.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/sms-templates") || request()->is("admin/sms-templates/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-comments c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.smsTemplate.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('email_template_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.email-templates.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/email-templates") || request()->is("admin/email-templates/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-at c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.emailTemplate.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('institution_calendar_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.institution-calendars.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/institution-calendars") || request()->is("admin/institution-calendars/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-calendar-alt c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.institutionCalendar.title') }}
                             </a>
                         </li>
                     @endcan
@@ -582,6 +632,16 @@
                 </ul>
             </li>
         @endcan
+        @can('marketing_ad_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.marketing-ads.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/marketing-ads") || request()->is("admin/marketing-ads/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-paperclip c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.marketingAd.title') }}
+                </a>
+            </li>
+        @endcan
         @can('setting_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.settings.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/settings") || request()->is("admin/settings/*") ? "c-active" : "" }}">
@@ -589,16 +649,6 @@
 
                     </i>
                     {{ trans('cruds.setting.title') }}
-                </a>
-            </li>
-        @endcan
-        @can('test_answer_access')
-            <li class="c-sidebar-nav-item">
-                <a href="{{ route("admin.test-answers.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/test-answers") || request()->is("admin/test-answers/*") ? "c-active" : "" }}">
-                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.testAnswer.title') }}
                 </a>
             </li>
         @endcan

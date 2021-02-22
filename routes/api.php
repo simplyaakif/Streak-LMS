@@ -134,4 +134,21 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Test Answers
     Route::apiResource('test-answers', 'TestAnswersApiController');
+
+    // Certificates
+    Route::apiResource('certificates', 'CertificateApiController');
+
+    // Sms Templates
+    Route::apiResource('sms-templates', 'SmsTemplatesApiController');
+
+    // Email Templates
+    Route::post('email-templates/media', 'EmailTemplatesApiController@storeMedia')->name('email-templates.storeMedia');
+    Route::apiResource('email-templates', 'EmailTemplatesApiController');
+
+    // Institution Calendars
+    Route::apiResource('institution-calendars', 'InstitutionCalendarApiController');
+
+    // Marketing Ads
+    Route::post('marketing-ads/media', 'MarketingAdsApiController@storeMedia')->name('marketing-ads.storeMedia');
+    Route::apiResource('marketing-ads', 'MarketingAdsApiController');
 });
