@@ -70,7 +70,15 @@ class Student extends Model implements HasMedia
 
     public function getDpAttribute()
     {
-        return $this->getMedia('dp')->last();
+        $file = $this->getMedia('dp')->last();
+
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview   = $file->getUrl('preview');
+        }
+
+        return $file;
     }
 
     public function user()

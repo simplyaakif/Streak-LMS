@@ -8,7 +8,14 @@ use Carbon\Carbon;
 class SystemCalendarController extends Controller
 {
     public $sources = [
-
+        [
+            'model'      => '\App\Models\InstitutionCalendar',
+            'date_field' => 'date',
+            'field'      => 'title',
+            'prefix'     => '',
+            'suffix'     => '',
+            'route'      => 'admin.institution-calendars.edit',
+        ],
     ];
 
     public function index()

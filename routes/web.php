@@ -215,6 +215,30 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('test-answers/destroy', 'TestAnswersController@massDestroy')->name('test-answers.massDestroy');
     Route::resource('test-answers', 'TestAnswersController');
 
+    // Certificates
+    Route::delete('certificates/destroy', 'CertificateController@massDestroy')->name('certificates.massDestroy');
+    Route::resource('certificates', 'CertificateController');
+
+    // Sms Templates
+    Route::delete('sms-templates/destroy', 'SmsTemplatesController@massDestroy')->name('sms-templates.massDestroy');
+    Route::resource('sms-templates', 'SmsTemplatesController');
+
+    // Email Templates
+    Route::delete('email-templates/destroy', 'EmailTemplatesController@massDestroy')->name('email-templates.massDestroy');
+    Route::post('email-templates/media', 'EmailTemplatesController@storeMedia')->name('email-templates.storeMedia');
+    Route::post('email-templates/ckmedia', 'EmailTemplatesController@storeCKEditorImages')->name('email-templates.storeCKEditorImages');
+    Route::resource('email-templates', 'EmailTemplatesController');
+
+    // Institution Calendars
+    Route::delete('institution-calendars/destroy', 'InstitutionCalendarController@massDestroy')->name('institution-calendars.massDestroy');
+    Route::resource('institution-calendars', 'InstitutionCalendarController');
+
+    // Marketing Ads
+    Route::delete('marketing-ads/destroy', 'MarketingAdsController@massDestroy')->name('marketing-ads.massDestroy');
+    Route::post('marketing-ads/media', 'MarketingAdsController@storeMedia')->name('marketing-ads.storeMedia');
+    Route::post('marketing-ads/ckmedia', 'MarketingAdsController@storeCKEditorImages')->name('marketing-ads.storeCKEditorImages');
+    Route::resource('marketing-ads', 'MarketingAdsController');
+
     Route::get('system-calendar', 'SystemCalendarController@index')->name('systemCalendar');
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
@@ -431,6 +455,30 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     // Test Answers
     Route::delete('test-answers/destroy', 'TestAnswersController@massDestroy')->name('test-answers.massDestroy');
     Route::resource('test-answers', 'TestAnswersController');
+
+    // Certificates
+    Route::delete('certificates/destroy', 'CertificateController@massDestroy')->name('certificates.massDestroy');
+    Route::resource('certificates', 'CertificateController');
+
+    // Sms Templates
+    Route::delete('sms-templates/destroy', 'SmsTemplatesController@massDestroy')->name('sms-templates.massDestroy');
+    Route::resource('sms-templates', 'SmsTemplatesController');
+
+    // Email Templates
+    Route::delete('email-templates/destroy', 'EmailTemplatesController@massDestroy')->name('email-templates.massDestroy');
+    Route::post('email-templates/media', 'EmailTemplatesController@storeMedia')->name('email-templates.storeMedia');
+    Route::post('email-templates/ckmedia', 'EmailTemplatesController@storeCKEditorImages')->name('email-templates.storeCKEditorImages');
+    Route::resource('email-templates', 'EmailTemplatesController');
+
+    // Institution Calendars
+    Route::delete('institution-calendars/destroy', 'InstitutionCalendarController@massDestroy')->name('institution-calendars.massDestroy');
+    Route::resource('institution-calendars', 'InstitutionCalendarController');
+
+    // Marketing Ads
+    Route::delete('marketing-ads/destroy', 'MarketingAdsController@massDestroy')->name('marketing-ads.massDestroy');
+    Route::post('marketing-ads/media', 'MarketingAdsController@storeMedia')->name('marketing-ads.storeMedia');
+    Route::post('marketing-ads/ckmedia', 'MarketingAdsController@storeCKEditorImages')->name('marketing-ads.storeCKEditorImages');
+    Route::resource('marketing-ads', 'MarketingAdsController');
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');

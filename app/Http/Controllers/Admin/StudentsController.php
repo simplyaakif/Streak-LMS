@@ -50,7 +50,15 @@ class StudentsController extends Controller
                 return $row->id ? $row->id : "";
             });
             $table->editColumn('dp', function ($row) {
-                return $row->dp ? '<a href="' . $row->dp->getUrl() . '" target="_blank">' . trans('global.downloadFile') . '</a>' : '';
+                if ($photo = $row->dp) {
+                    return sprintf(
+                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
+                        $photo->url,
+                        $photo->thumbnail
+                    );
+                }
+
+                return '';
             });
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : "";

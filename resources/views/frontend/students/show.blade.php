@@ -32,8 +32,8 @@
                                     </th>
                                     <td>
                                         @if($student->dp)
-                                            <a href="{{ $student->dp->getUrl() }}" target="_blank">
-                                                {{ trans('global.view_file') }}
+                                            <a href="{{ $student->dp->getUrl() }}" target="_blank" style="display: inline-block">
+                                                <img src="{{ $student->dp->getUrl('thumb') }}">
                                             </a>
                                         @endif
                                     </td>

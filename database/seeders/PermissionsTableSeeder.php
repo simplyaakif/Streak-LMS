@@ -908,6 +908,106 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 225,
+                'title' => 'certificate_create',
+            ],
+            [
+                'id'    => 226,
+                'title' => 'certificate_edit',
+            ],
+            [
+                'id'    => 227,
+                'title' => 'certificate_show',
+            ],
+            [
+                'id'    => 228,
+                'title' => 'certificate_delete',
+            ],
+            [
+                'id'    => 229,
+                'title' => 'certificate_access',
+            ],
+            [
+                'id'    => 230,
+                'title' => 'sms_template_create',
+            ],
+            [
+                'id'    => 231,
+                'title' => 'sms_template_edit',
+            ],
+            [
+                'id'    => 232,
+                'title' => 'sms_template_show',
+            ],
+            [
+                'id'    => 233,
+                'title' => 'sms_template_delete',
+            ],
+            [
+                'id'    => 234,
+                'title' => 'sms_template_access',
+            ],
+            [
+                'id'    => 235,
+                'title' => 'email_template_create',
+            ],
+            [
+                'id'    => 236,
+                'title' => 'email_template_edit',
+            ],
+            [
+                'id'    => 237,
+                'title' => 'email_template_show',
+            ],
+            [
+                'id'    => 238,
+                'title' => 'email_template_delete',
+            ],
+            [
+                'id'    => 239,
+                'title' => 'email_template_access',
+            ],
+            [
+                'id'    => 240,
+                'title' => 'institution_calendar_create',
+            ],
+            [
+                'id'    => 241,
+                'title' => 'institution_calendar_edit',
+            ],
+            [
+                'id'    => 242,
+                'title' => 'institution_calendar_show',
+            ],
+            [
+                'id'    => 243,
+                'title' => 'institution_calendar_delete',
+            ],
+            [
+                'id'    => 244,
+                'title' => 'institution_calendar_access',
+            ],
+            [
+                'id'    => 245,
+                'title' => 'marketing_ad_create',
+            ],
+            [
+                'id'    => 246,
+                'title' => 'marketing_ad_edit',
+            ],
+            [
+                'id'    => 247,
+                'title' => 'marketing_ad_show',
+            ],
+            [
+                'id'    => 248,
+                'title' => 'marketing_ad_delete',
+            ],
+            [
+                'id'    => 249,
+                'title' => 'marketing_ad_access',
+            ],
+            [
+                'id'    => 250,
                 'title' => 'profile_password_edit',
             ],
         ];
