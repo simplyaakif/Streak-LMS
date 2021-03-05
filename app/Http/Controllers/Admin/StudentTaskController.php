@@ -25,7 +25,7 @@ class StudentTaskController extends Controller
         abort_if(Gate::denies('student_task_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = StudentTask::with(['user', 'students'])->select(sprintf('%s.*', (new StudentTask)->table));
+            $query = StudentTask::with(['assigned_by', 'students'])->select(sprintf('%s.*', (new StudentTask)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -49,10 +49,6 @@ class StudentTaskController extends Controller
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : "";
             });
-            $table->addColumn('user_name', function ($row) {
-                return $row->user ? $row->user->name : '';
-            });
-
             $table->editColumn('task', function ($row) {
                 return $row->task ? $row->task : "";
             });
@@ -69,6 +65,10 @@ class StudentTaskController extends Controller
 
                 return implode(', ', $links);
             });
+            $table->addColumn('assigned_by_name', function ($row) {
+                return $row->assigned_by ? $row->assigned_by->name : '';
+            });
+
             $table->editColumn('students', function ($row) {
                 $labels = [];
 
@@ -79,7 +79,7 @@ class StudentTaskController extends Controller
                 return implode(' ', $labels);
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'user', 'files', 'students']);
+            $table->rawColumns(['actions', 'placeholder', 'files', 'assigned_by', 'students']);
 
             return $table->make(true);
         }
@@ -91,11 +91,11 @@ class StudentTaskController extends Controller
     {
         abort_if(Gate::denies('student_task_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $assigned_bies = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $students = BatchStudent::all()->pluck('sessions_start_date', 'id');
 
-        return view('admin.studentTasks.create', compact('users', 'students'));
+        return view('admin.studentTasks.create', compact('assigned_bies', 'students'));
     }
 
     public function store(StoreStudentTaskRequest $request)
@@ -118,13 +118,13 @@ class StudentTaskController extends Controller
     {
         abort_if(Gate::denies('student_task_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $assigned_bies = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $students = BatchStudent::all()->pluck('sessions_start_date', 'id');
 
-        $studentTask->load('user', 'students');
+        $studentTask->load('assigned_by', 'students');
 
-        return view('admin.studentTasks.edit', compact('users', 'students', 'studentTask'));
+        return view('admin.studentTasks.edit', compact('assigned_bies', 'students', 'studentTask'));
     }
 
     public function update(UpdateStudentTaskRequest $request, StudentTask $studentTask)
@@ -155,7 +155,7 @@ class StudentTaskController extends Controller
     {
         abort_if(Gate::denies('student_task_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $studentTask->load('user', 'students');
+        $studentTask->load('assigned_by', 'students');
 
         return view('admin.studentTasks.show', compact('studentTask'));
     }

@@ -10,20 +10,6 @@
         <form method="POST" action="{{ route("admin.student-tasks.store") }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="user_id">{{ trans('cruds.studentTask.fields.user') }}</label>
-                <select class="form-control select2 {{ $errors->has('user') ? 'is-invalid' : '' }}" name="user_id" id="user_id">
-                    @foreach($users as $id => $user)
-                        <option value="{{ $id }}" {{ old('user_id') == $id ? 'selected' : '' }}>{{ $user }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('user'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('user') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.studentTask.fields.user_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label for="task">{{ trans('cruds.studentTask.fields.task') }}</label>
                 <input class="form-control {{ $errors->has('task') ? 'is-invalid' : '' }}" type="text" name="task" id="task" value="{{ old('task', '') }}">
                 @if($errors->has('task'))
@@ -53,6 +39,20 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.studentTask.fields.files_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="assigned_by_id">{{ trans('cruds.studentTask.fields.assigned_by') }}</label>
+                <select class="form-control select2 {{ $errors->has('assigned_by') ? 'is-invalid' : '' }}" name="assigned_by_id" id="assigned_by_id">
+                    @foreach($assigned_bies as $id => $assigned_by)
+                        <option value="{{ $id }}" {{ old('assigned_by_id') == $id ? 'selected' : '' }}>{{ $assigned_by }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('assigned_by'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('assigned_by') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.studentTask.fields.assigned_by_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="students">{{ trans('cruds.studentTask.fields.students') }}</label>

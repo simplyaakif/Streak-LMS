@@ -26,9 +26,18 @@ class BatchAttendance extends Model
         'batch_id',
         'date',
         'comment',
+        'status',
         'created_at',
         'updated_at',
         'deleted_at',
+    ];
+
+    const STATUS_RADIO = [
+        'Present' => 'Present',
+        'Absent'  => 'Absent',
+        'Leave'   => 'Leave',
+        'Late'    => 'Late',
+        'Other'   => 'Other',
     ];
 
     protected function serializeDate(DateTimeInterface $date)

@@ -26,10 +26,10 @@
                                         {{ trans('cruds.staffAttendance.fields.id') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.staffAttendance.fields.batch') }}
+                                        {{ trans('cruds.staffAttendance.fields.employee') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.staffAttendance.fields.student') }}
+                                        {{ trans('cruds.staffAttendance.fields.status') }}
                                     </th>
                                     <th>
                                         {{ trans('cruds.staffAttendance.fields.date') }}
@@ -52,12 +52,10 @@
                                             {{ $staffAttendance->id ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $staffAttendance->batch->title ?? '' }}
+                                            {{ $staffAttendance->employee->name ?? '' }}
                                         </td>
                                         <td>
-                                            @foreach($staffAttendance->students as $key => $item)
-                                                <span>{{ $item->name }}</span>
-                                            @endforeach
+                                            {{ App\Models\StaffAttendance::STATUS_RADIO[$staffAttendance->status] ?? '' }}
                                         </td>
                                         <td>
                                             {{ $staffAttendance->date ?? '' }}

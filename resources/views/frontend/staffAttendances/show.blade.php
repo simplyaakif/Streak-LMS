@@ -28,20 +28,18 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.staffAttendance.fields.batch') }}
+                                        {{ trans('cruds.staffAttendance.fields.employee') }}
                                     </th>
                                     <td>
-                                        {{ $staffAttendance->batch->title ?? '' }}
+                                        {{ $staffAttendance->employee->name ?? '' }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.staffAttendance.fields.student') }}
+                                        {{ trans('cruds.staffAttendance.fields.status') }}
                                     </th>
                                     <td>
-                                        @foreach($staffAttendance->students as $key => $student)
-                                            <span class="label label-info">{{ $student->name }}</span>
-                                        @endforeach
+                                        {{ App\Models\StaffAttendance::STATUS_RADIO[$staffAttendance->status] ?? '' }}
                                     </td>
                                 </tr>
                                 <tr>

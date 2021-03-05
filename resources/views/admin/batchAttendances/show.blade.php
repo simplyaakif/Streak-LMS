@@ -57,6 +57,14 @@
                             {{ $batchAttendance->comment }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.batchAttendance.fields.status') }}
+                        </th>
+                        <td>
+                            {{ App\Models\BatchAttendance::STATUS_RADIO[$batchAttendance->status] ?? '' }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

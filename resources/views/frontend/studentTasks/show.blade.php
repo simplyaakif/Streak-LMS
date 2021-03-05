@@ -28,14 +28,6 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.studentTask.fields.user') }}
-                                    </th>
-                                    <td>
-                                        {{ $studentTask->user->name ?? '' }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
                                         {{ trans('cruds.studentTask.fields.task') }}
                                     </th>
                                     <td>
@@ -60,6 +52,14 @@
                                                 {{ trans('global.view_file') }}
                                             </a>
                                         @endforeach
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.studentTask.fields.assigned_by') }}
+                                    </th>
+                                    <td>
+                                        {{ $studentTask->assigned_by->name ?? '' }}
                                     </td>
                                 </tr>
                                 <tr>

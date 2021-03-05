@@ -24,6 +24,26 @@
                             <span class="help-block">{{ trans('cruds.studentStatus.fields.status_title_helper') }}</span>
                         </div>
                         <div class="form-group">
+                            <label for="start_date">{{ trans('cruds.studentStatus.fields.start_date') }}</label>
+                            <input class="form-control date" type="text" name="start_date" id="start_date" value="{{ old('start_date') }}">
+                            @if($errors->has('start_date'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('start_date') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.studentStatus.fields.start_date_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="end_date">{{ trans('cruds.studentStatus.fields.end_date') }}</label>
+                            <input class="form-control date" type="text" name="end_date" id="end_date" value="{{ old('end_date') }}">
+                            @if($errors->has('end_date'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('end_date') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.studentStatus.fields.end_date_helper') }}</span>
+                        </div>
+                        <div class="form-group">
                             <label for="comments">{{ trans('cruds.studentStatus.fields.comments') }}</label>
                             <textarea class="form-control" name="comments" id="comments">{{ old('comments') }}</textarea>
                             @if($errors->has('comments'))

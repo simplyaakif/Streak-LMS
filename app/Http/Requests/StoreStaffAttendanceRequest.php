@@ -17,18 +17,7 @@ class StoreStaffAttendanceRequest extends FormRequest
     public function rules()
     {
         return [
-            'batch_id'   => [
-                'required',
-                'integer',
-            ],
-            'students.*' => [
-                'integer',
-            ],
-            'students'   => [
-                'required',
-                'array',
-            ],
-            'date'       => [
+            'date' => [
                 'required',
                 'date_format:' . config('panel.date_format'),
             ],

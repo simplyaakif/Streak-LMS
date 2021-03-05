@@ -8,8 +8,8 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyStudentRequest;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Models\Employee;
 use App\Models\Student;
-use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -32,7 +32,7 @@ class StudentsController extends Controller
     {
         abort_if(Gate::denies('student_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $users = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         return view('frontend.students.create', compact('users'));
     }
@@ -60,7 +60,7 @@ class StudentsController extends Controller
     {
         abort_if(Gate::denies('student_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $users = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $student->load('user');
 

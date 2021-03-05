@@ -25,10 +25,10 @@
                         {{ trans('cruds.staffAttendance.fields.id') }}
                     </th>
                     <th>
-                        {{ trans('cruds.staffAttendance.fields.batch') }}
+                        {{ trans('cruds.staffAttendance.fields.employee') }}
                     </th>
                     <th>
-                        {{ trans('cruds.staffAttendance.fields.student') }}
+                        {{ trans('cruds.staffAttendance.fields.status') }}
                     </th>
                     <th>
                         {{ trans('cruds.staffAttendance.fields.date') }}
@@ -96,8 +96,8 @@
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
-{ data: 'batch_title', name: 'batch.title' },
-{ data: 'student', name: 'students.name' },
+{ data: 'employee_name', name: 'employee.name' },
+{ data: 'status', name: 'status' },
 { data: 'date', name: 'date' },
 { data: 'comment', name: 'comment' },
 { data: 'taken_by_name', name: 'taken_by.name' },

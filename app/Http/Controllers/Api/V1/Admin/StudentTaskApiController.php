@@ -20,7 +20,7 @@ class StudentTaskApiController extends Controller
     {
         abort_if(Gate::denies('student_task_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new StudentTaskResource(StudentTask::with(['user', 'students'])->get());
+        return new StudentTaskResource(StudentTask::with(['assigned_by', 'students'])->get());
     }
 
     public function store(StoreStudentTaskRequest $request)
@@ -41,7 +41,7 @@ class StudentTaskApiController extends Controller
     {
         abort_if(Gate::denies('student_task_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new StudentTaskResource($studentTask->load(['user', 'students']));
+        return new StudentTaskResource($studentTask->load(['assigned_by', 'students']));
     }
 
     public function update(UpdateStudentTaskRequest $request, StudentTask $studentTask)

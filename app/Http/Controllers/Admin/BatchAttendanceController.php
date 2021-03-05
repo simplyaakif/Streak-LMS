@@ -62,6 +62,9 @@ class BatchAttendanceController extends Controller
             $table->editColumn('comment', function ($row) {
                 return $row->comment ? $row->comment : "";
             });
+            $table->editColumn('status', function ($row) {
+                return $row->status ? BatchAttendance::STATUS_RADIO[$row->status] : '';
+            });
 
             $table->rawColumns(['actions', 'placeholder', 'batch', 'student']);
 

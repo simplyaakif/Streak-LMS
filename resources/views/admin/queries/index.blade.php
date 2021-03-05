@@ -53,6 +53,9 @@
                         {{ trans('cruds.query.fields.interaction_type') }}
                     </th>
                     <th>
+                        {{ trans('cruds.query.fields.status') }}
+                    </th>
+                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -117,6 +120,7 @@
 { data: 'address', name: 'address' },
 { data: 'comments_remarks', name: 'comments_remarks' },
 { data: 'interaction_type_title', name: 'interaction_type.title' },
+{ data: 'status_title', name: 'status.title' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

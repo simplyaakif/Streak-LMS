@@ -54,6 +54,9 @@
                                         {{ trans('cruds.query.fields.interaction_type') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.query.fields.status') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -89,6 +92,9 @@
                                         </td>
                                         <td>
                                             {{ $query->interaction_type->title ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $query->status->title ?? '' }}
                                         </td>
                                         <td>
                                             @can('query_show')

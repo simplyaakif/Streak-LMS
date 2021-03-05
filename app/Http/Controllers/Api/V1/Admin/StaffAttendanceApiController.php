@@ -17,13 +17,12 @@ class StaffAttendanceApiController extends Controller
     {
         abort_if(Gate::denies('staff_attendance_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new StaffAttendanceResource(StaffAttendance::with(['batch', 'students', 'taken_by'])->get());
+        return new StaffAttendanceResource(StaffAttendance::with(['employee', 'taken_by'])->get());
     }
 
     public function store(StoreStaffAttendanceRequest $request)
     {
         $staffAttendance = StaffAttendance::create($request->all());
-        $staffAttendance->students()->sync($request->input('students', []));
 
         return (new StaffAttendanceResource($staffAttendance))
             ->response()
@@ -34,13 +33,12 @@ class StaffAttendanceApiController extends Controller
     {
         abort_if(Gate::denies('staff_attendance_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new StaffAttendanceResource($staffAttendance->load(['batch', 'students', 'taken_by']));
+        return new StaffAttendanceResource($staffAttendance->load(['employee', 'taken_by']));
     }
 
     public function update(UpdateStaffAttendanceRequest $request, StaffAttendance $staffAttendance)
     {
         $staffAttendance->update($request->all());
-        $staffAttendance->students()->sync($request->input('students', []));
 
         return (new StaffAttendanceResource($staffAttendance))
             ->response()

@@ -26,13 +26,13 @@
                                         {{ trans('cruds.studentTask.fields.id') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.studentTask.fields.user') }}
-                                    </th>
-                                    <th>
                                         {{ trans('cruds.studentTask.fields.task') }}
                                     </th>
                                     <th>
                                         {{ trans('cruds.studentTask.fields.files') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.studentTask.fields.assigned_by') }}
                                     </th>
                                     <th>
                                         {{ trans('cruds.studentTask.fields.students') }}
@@ -49,9 +49,6 @@
                                             {{ $studentTask->id ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $studentTask->user->name ?? '' }}
-                                        </td>
-                                        <td>
                                             {{ $studentTask->task ?? '' }}
                                         </td>
                                         <td>
@@ -60,6 +57,9 @@
                                                     {{ trans('global.view_file') }}
                                                 </a>
                                             @endforeach
+                                        </td>
+                                        <td>
+                                            {{ $studentTask->assigned_by->name ?? '' }}
                                         </td>
                                         <td>
                                             @foreach($studentTask->students as $key => $item)

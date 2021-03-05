@@ -37,6 +37,9 @@
                         {{ trans('cruds.batchAttendance.fields.comment') }}
                     </th>
                     <th>
+                        {{ trans('cruds.batchAttendance.fields.status') }}
+                    </th>
+                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -97,6 +100,7 @@
 { data: 'student', name: 'students.name' },
 { data: 'date', name: 'date' },
 { data: 'comment', name: 'comment' },
+{ data: 'status', name: 'status' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

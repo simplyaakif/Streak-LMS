@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyStaffAttendanceRequest;
 use App\Http\Requests\StoreStaffAttendanceRequest;
 use App\Http\Requests\UpdateStaffAttendanceRequest;
-use App\Models\Batch;
 use App\Models\Employee;
 use App\Models\StaffAttendance;
 use App\Models\User;
@@ -20,7 +19,7 @@ class StaffAttendanceController extends Controller
     {
         abort_if(Gate::denies('staff_attendance_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $staffAttendances = StaffAttendance::with(['batch', 'students', 'taken_by'])->get();
+        $staffAttendances = StaffAttendance::with(['employee', 'taken_by'])->get();
 
         return view('frontend.staffAttendances.index', compact('staffAttendances'));
     }
@@ -29,19 +28,16 @@ class StaffAttendanceController extends Controller
     {
         abort_if(Gate::denies('staff_attendance_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $batches = Batch::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $students = Employee::all()->pluck('name', 'id');
+        $employees = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $taken_bies = User::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('frontend.staffAttendances.create', compact('batches', 'students', 'taken_bies'));
+        return view('frontend.staffAttendances.create', compact('employees', 'taken_bies'));
     }
 
     public function store(StoreStaffAttendanceRequest $request)
     {
         $staffAttendance = StaffAttendance::create($request->all());
-        $staffAttendance->students()->sync($request->input('students', []));
 
         return redirect()->route('frontend.staff-attendances.index');
     }
@@ -50,21 +46,18 @@ class StaffAttendanceController extends Controller
     {
         abort_if(Gate::denies('staff_attendance_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $batches = Batch::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $students = Employee::all()->pluck('name', 'id');
+        $employees = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $taken_bies = User::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $staffAttendance->load('batch', 'students', 'taken_by');
+        $staffAttendance->load('employee', 'taken_by');
 
-        return view('frontend.staffAttendances.edit', compact('batches', 'students', 'taken_bies', 'staffAttendance'));
+        return view('frontend.staffAttendances.edit', compact('employees', 'taken_bies', 'staffAttendance'));
     }
 
     public function update(UpdateStaffAttendanceRequest $request, StaffAttendance $staffAttendance)
     {
         $staffAttendance->update($request->all());
-        $staffAttendance->students()->sync($request->input('students', []));
 
         return redirect()->route('frontend.staff-attendances.index');
     }
@@ -73,7 +66,7 @@ class StaffAttendanceController extends Controller
     {
         abort_if(Gate::denies('staff_attendance_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $staffAttendance->load('batch', 'students', 'taken_by');
+        $staffAttendance->load('employee', 'taken_by');
 
         return view('frontend.staffAttendances.show', compact('staffAttendance'));
     }

@@ -25,13 +25,13 @@
                         {{ trans('cruds.studentTask.fields.id') }}
                     </th>
                     <th>
-                        {{ trans('cruds.studentTask.fields.user') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.studentTask.fields.task') }}
                     </th>
                     <th>
                         {{ trans('cruds.studentTask.fields.files') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.studentTask.fields.assigned_by') }}
                     </th>
                     <th>
                         {{ trans('cruds.studentTask.fields.students') }}
@@ -93,9 +93,9 @@
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
-{ data: 'user_name', name: 'user.name' },
 { data: 'task', name: 'task' },
 { data: 'files', name: 'files', sortable: false, searchable: false },
+{ data: 'assigned_by_name', name: 'assigned_by.name' },
 { data: 'students', name: 'students.sessions_start_date' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],

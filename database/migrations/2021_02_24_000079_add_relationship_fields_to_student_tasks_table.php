@@ -9,8 +9,8 @@ class AddRelationshipFieldsToStudentTasksTable extends Migration
     public function up()
     {
         Schema::table('student_tasks', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id', 'user_fk_3205801')->references('id')->on('employees');
+            $table->unsignedBigInteger('assigned_by_id')->nullable();
+            $table->foreign('assigned_by_id', 'assigned_by_fk_3274096')->references('id')->on('employees');
         });
     }
 }

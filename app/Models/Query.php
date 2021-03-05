@@ -34,6 +34,7 @@ class Query extends Model
         'address',
         'comments_remarks',
         'interaction_type_id',
+        'status_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -51,11 +52,16 @@ class Query extends Model
 
     public function dealt_by()
     {
-        return $this->belongsTo(User::class, 'dealt_by_id');
+        return $this->belongsTo(Employee::class, 'dealt_by_id');
     }
 
     public function interaction_type()
     {
         return $this->belongsTo(QueryInteractionType::class, 'interaction_type_id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(QueryStatus::class, 'status_id');
     }
 }

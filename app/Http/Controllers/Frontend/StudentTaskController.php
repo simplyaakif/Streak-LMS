@@ -23,7 +23,7 @@ class StudentTaskController extends Controller
     {
         abort_if(Gate::denies('student_task_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $studentTasks = StudentTask::with(['user', 'students', 'media'])->get();
+        $studentTasks = StudentTask::with(['assigned_by', 'students', 'media'])->get();
 
         return view('frontend.studentTasks.index', compact('studentTasks'));
     }
@@ -32,11 +32,11 @@ class StudentTaskController extends Controller
     {
         abort_if(Gate::denies('student_task_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $assigned_bies = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $students = BatchStudent::all()->pluck('sessions_start_date', 'id');
 
-        return view('frontend.studentTasks.create', compact('users', 'students'));
+        return view('frontend.studentTasks.create', compact('assigned_bies', 'students'));
     }
 
     public function store(StoreStudentTaskRequest $request)
@@ -59,13 +59,13 @@ class StudentTaskController extends Controller
     {
         abort_if(Gate::denies('student_task_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $assigned_bies = Employee::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $students = BatchStudent::all()->pluck('sessions_start_date', 'id');
 
-        $studentTask->load('user', 'students');
+        $studentTask->load('assigned_by', 'students');
 
-        return view('frontend.studentTasks.edit', compact('users', 'students', 'studentTask'));
+        return view('frontend.studentTasks.edit', compact('assigned_bies', 'students', 'studentTask'));
     }
 
     public function update(UpdateStudentTaskRequest $request, StudentTask $studentTask)
@@ -96,7 +96,7 @@ class StudentTaskController extends Controller
     {
         abort_if(Gate::denies('student_task_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $studentTask->load('user', 'students');
+        $studentTask->load('assigned_by', 'students');
 
         return view('frontend.studentTasks.show', compact('studentTask'));
     }

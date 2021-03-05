@@ -66,6 +66,21 @@
                             <span class="help-block">{{ trans('cruds.batchAttendance.fields.comment_helper') }}</span>
                         </div>
                         <div class="form-group">
+                            <label>{{ trans('cruds.batchAttendance.fields.status') }}</label>
+                            @foreach(App\Models\BatchAttendance::STATUS_RADIO as $key => $label)
+                                <div>
+                                    <input type="radio" id="status_{{ $key }}" name="status" value="{{ $key }}" {{ old('status', '') === (string) $key ? 'checked' : '' }}>
+                                    <label for="status_{{ $key }}">{{ $label }}</label>
+                                </div>
+                            @endforeach
+                            @if($errors->has('status'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('status') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.batchAttendance.fields.status_helper') }}</span>
+                        </div>
+                        <div class="form-group">
                             <button class="btn btn-danger" type="submit">
                                 {{ trans('global.save') }}
                             </button>

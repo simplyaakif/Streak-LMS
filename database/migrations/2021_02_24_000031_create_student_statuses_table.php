@@ -12,6 +12,8 @@ class CreateStudentStatusesTable extends Migration
             $table->bigIncrements('id');
             $table->string('status_title');
             $table->longText('comments')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

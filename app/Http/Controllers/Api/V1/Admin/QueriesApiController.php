@@ -17,7 +17,7 @@ class QueriesApiController extends Controller
     {
         abort_if(Gate::denies('query_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new QueryResource(Query::with(['courses', 'dealt_by', 'interaction_type'])->get());
+        return new QueryResource(Query::with(['courses', 'dealt_by', 'interaction_type', 'status'])->get());
     }
 
     public function store(StoreQueryRequest $request)
@@ -34,7 +34,7 @@ class QueriesApiController extends Controller
     {
         abort_if(Gate::denies('query_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new QueryResource($query->load(['courses', 'dealt_by', 'interaction_type']));
+        return new QueryResource($query->load(['courses', 'dealt_by', 'interaction_type', 'status']));
     }
 
     public function update(UpdateQueryRequest $request, Query $query)

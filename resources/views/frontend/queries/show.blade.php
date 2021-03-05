@@ -92,6 +92,14 @@
                                         {{ $query->interaction_type->title ?? '' }}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.query.fields.status') }}
+                                    </th>
+                                    <td>
+                                        {{ $query->status->title ?? '' }}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="form-group">

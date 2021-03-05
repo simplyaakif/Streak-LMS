@@ -21,6 +21,14 @@ class StoreStudentStatusRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'start_date'   => [
+                'date_format:' . config('panel.date_format'),
+                'nullable',
+            ],
+            'end_date'     => [
+                'date_format:' . config('panel.date_format'),
+                'nullable',
+            ],
         ];
     }
 }

@@ -107,6 +107,20 @@
                 <span class="help-block">{{ trans('cruds.query.fields.interaction_type_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="status_id">{{ trans('cruds.query.fields.status') }}</label>
+                <select class="form-control select2 {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status_id" id="status_id">
+                    @foreach($statuses as $id => $status)
+                        <option value="{{ $id }}" {{ (old('status_id') ? old('status_id') : $query->status->id ?? '') == $id ? 'selected' : '' }}>{{ $status }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('status'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('status') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.query.fields.status_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>

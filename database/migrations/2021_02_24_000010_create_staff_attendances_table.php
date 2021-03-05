@@ -12,6 +12,7 @@ class CreateStaffAttendancesTable extends Migration
             $table->bigIncrements('id');
             $table->date('date');
             $table->longText('comment')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

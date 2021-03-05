@@ -9,10 +9,10 @@ class AddRelationshipFieldsToStaffAttendancesTable extends Migration
     public function up()
     {
         Schema::table('staff_attendances', function (Blueprint $table) {
-            $table->unsignedBigInteger('batch_id');
-            $table->foreign('batch_id', 'batch_fk_3205710')->references('id')->on('batches');
             $table->unsignedBigInteger('taken_by_id')->nullable();
             $table->foreign('taken_by_id', 'taken_by_fk_3205714')->references('id')->on('users');
+            $table->unsignedBigInteger('employee_id')->nullable();
+            $table->foreign('employee_id', 'employee_fk_3253213')->references('id')->on('employees');
         });
     }
 }

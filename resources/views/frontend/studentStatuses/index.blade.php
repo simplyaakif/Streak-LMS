@@ -29,6 +29,12 @@
                                         {{ trans('cruds.studentStatus.fields.status_title') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.studentStatus.fields.start_date') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.studentStatus.fields.end_date') }}
+                                    </th>
+                                    <th>
                                         {{ trans('cruds.studentStatus.fields.comments') }}
                                     </th>
                                     <th>
@@ -44,6 +50,12 @@
                                         </td>
                                         <td>
                                             {{ $studentStatus->status_title ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $studentStatus->start_date ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $studentStatus->end_date ?? '' }}
                                         </td>
                                         <td>
                                             {{ $studentStatus->comments ?? '' }}

@@ -22,8 +22,17 @@ class StaffAttendance extends Model
         'deleted_at',
     ];
 
+    const STATUS_RADIO = [
+        'Present' => 'Present',
+        'Absent'  => 'Absent',
+        'Leave'   => 'Leave',
+        'Late'    => 'Late',
+        'Other'   => 'Other',
+    ];
+
     protected $fillable = [
-        'batch_id',
+        'employee_id',
+        'status',
         'date',
         'comment',
         'taken_by_id',
@@ -37,14 +46,9 @@ class StaffAttendance extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function batch()
+    public function employee()
     {
-        return $this->belongsTo(Batch::class, 'batch_id');
-    }
-
-    public function students()
-    {
-        return $this->belongsToMany(Employee::class);
+        return $this->belongsTo(Employee::class, 'employee_id');
     }
 
     public function getDateAttribute($value)

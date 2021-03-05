@@ -28,9 +28,9 @@ class StudentTask extends Model implements HasMedia
     ];
 
     protected $fillable = [
-        'user_id',
         'task',
         'details',
+        'assigned_by_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -47,14 +47,14 @@ class StudentTask extends Model implements HasMedia
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
 
-    public function user()
-    {
-        return $this->belongsTo(Employee::class, 'user_id');
-    }
-
     public function getFilesAttribute()
     {
         return $this->getMedia('files');
+    }
+
+    public function assigned_by()
+    {
+        return $this->belongsTo(Employee::class, 'assigned_by_id');
     }
 
     public function students()

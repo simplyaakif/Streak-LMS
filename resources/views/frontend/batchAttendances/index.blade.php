@@ -38,6 +38,9 @@
                                         {{ trans('cruds.batchAttendance.fields.comment') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.batchAttendance.fields.status') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -61,6 +64,9 @@
                                         </td>
                                         <td>
                                             {{ $batchAttendance->comment ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ App\Models\BatchAttendance::STATUS_RADIO[$batchAttendance->status] ?? '' }}
                                         </td>
                                         <td>
                                             @can('batch_attendance_show')
