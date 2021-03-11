@@ -111,6 +111,8 @@ class QueriesController extends Controller
 
     public function store(StoreQueryRequest $request)
     {
+//        dd($request->all());
+
         $query = Query::create($request->all());
         $query->courses()->sync($request->input('courses', []));
 

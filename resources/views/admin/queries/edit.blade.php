@@ -58,20 +58,29 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.query.fields.courses_helper') }}</span>
             </div>
-            <div class="form-group">
-                <label class="required" for="dealt_by_id">{{ trans('cruds.query.fields.dealt_by') }}</label>
-                <select class="form-control select2 {{ $errors->has('dealt_by') ? 'is-invalid' : '' }}" name="dealt_by_id" id="dealt_by_id" required>
-                    @foreach($dealt_bies as $id => $dealt_by)
-                        <option value="{{ $id }}" {{ (old('dealt_by_id') ? old('dealt_by_id') : $query->dealt_by->id ?? '') == $id ? 'selected' : '' }}>{{ $dealt_by }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('dealt_by'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('dealt_by') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.query.fields.dealt_by_helper') }}</span>
-            </div>
+            @if(Auth::user()->isAdminOrDirector())
+                <div class="form-group">
+                    <label class="required" for="dealt_by_id">{{ trans('cruds.query.fields.dealt_by') }}</label>
+                    <select class="form-control select2 {{ $errors->has('dealt_by') ? 'is-invalid' : '' }}" name="dealt_by_id" id="dealt_by_id" required>
+                        @foreach($dealt_bies as $id => $dealt_by)
+                            <option value="{{ $id }}" {{ (old('dealt_by_id') ? old('dealt_by_id') : $query->dealt_by->id ?? '') == $id ? 'selected' : '' }}>{{ $dealt_by }}</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('dealt_by'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('dealt_by') }}
+                        </div>
+                    @endif
+                    <span class="help-block">{{ trans('cruds.query.fields.dealt_by_helper') }}</span>
+                </div>
+            @else
+                <div class="form-group d-none">
+                    <label class="required" for="dealt_by_id">{{ trans('cruds.query.fields.dealt_by') }}</label>
+                    <input name="dealt_by_id" id="dealt_by_id" value="<?= Auth::user()->employee['id'] ?>"
+                           type="number">
+                </div>
+            @endif
+
             <div class="form-group">
                 <label for="address">{{ trans('cruds.query.fields.address') }}</label>
                 <textarea class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" name="address" id="address">{{ old('address', $query->address) }}</textarea>

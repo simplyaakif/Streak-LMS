@@ -47,6 +47,16 @@ class User extends Authenticatable
         'deleted_at',
     ];
 
+    public function isAdminOrDirector()
+    {
+        return $this->roles()->where('role_id', 1)->first();
+    }
+
+    public function isStudent()
+    {
+        return $this->roles()->where('role_id','!=',2)->first();
+    }
+
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
@@ -128,5 +138,15 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    public function employee()
+    {
+        return $this->hasOne(Employee::class);
     }
 }

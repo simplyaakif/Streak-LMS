@@ -15,8 +15,9 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (!auth()->user()->is_admin) {
+        if (!auth()->user()->isStudent()) {
             abort(403);
+//            return redirect('home',302);
         }
 
         return $next($request);

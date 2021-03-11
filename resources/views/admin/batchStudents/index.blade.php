@@ -1,18 +1,19 @@
 @extends('layouts.admin')
 @section('content')
-@can('batch_student_create')
-    <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.batch-students.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.batchStudent.title_singular') }}
-            </a>
-            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
-                {{ trans('global.app_csvImport') }}
-            </button>
-            @include('csvImport.modal', ['model' => 'BatchStudent', 'route' => 'admin.batch-students.parseCsvImport'])
-        </div>
-    </div>
-@endcan
+
+{{--@can('batch_student_create')--}}
+{{--    <div style="margin-bottom: 10px;" class="row">--}}
+{{--        <div class="col-lg-12">--}}
+{{--            <a class="btn btn-success" href="{{ route('admin.batch-students.create') }}">--}}
+{{--                {{ trans('global.add') }} {{ trans('cruds.batchStudent.title_singular') }}--}}
+{{--            </a>--}}
+{{--            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">--}}
+{{--                {{ trans('global.app_csvImport') }}--}}
+{{--            </button>--}}
+{{--            @include('csvImport.modal', ['model' => 'BatchStudent', 'route' => 'admin.batch-students.parseCsvImport'])--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--@endcan--}}
 <div class="card">
     <div class="card-header">
         {{ trans('cruds.batchStudent.title_singular') }} {{ trans('global.list') }}
@@ -120,7 +121,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 });
 
 </script>
