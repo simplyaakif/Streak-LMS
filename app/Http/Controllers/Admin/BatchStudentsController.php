@@ -23,54 +23,8 @@ class BatchStudentsController extends Controller
     public function index(Request $request)
     {
         abort_if(Gate::denies('batch_student_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        if ($request->ajax()) {
-            $query = BatchStudent::with(['batch', 'student', 'student_status'])->select(sprintf('%s.*', (new BatchStudent)->table));
-            $table = Datatables::of($query);
-
-            $table->addColumn('placeholder', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
-
-            $table->editColumn('actions', function ($row) {
-                $viewGate      = 'batch_student_show';
-                $editGate      = 'batch_student_edit';
-                $deleteGate    = 'batch_student_delete';
-                $crudRoutePart = 'batch-students';
-
-                return view('partials.datatablesActions', compact(
-                    'viewGate',
-                    'editGate',
-                    'deleteGate',
-                    'crudRoutePart',
-                    'row'
-                ));
-            });
-
-            $table->editColumn('id', function ($row) {
-                return $row->id ? $row->id : "";
-            });
-            $table->addColumn('batch_title', function ($row) {
-                return $row->batch ? $row->batch->title : '';
-            });
-
-            $table->addColumn('student_name', function ($row) {
-                return $row->student ? $row->student->name : '';
-            });
-
-            $table->addColumn('student_status_status_title', function ($row) {
-                return $row->student_status ? $row->student_status->status_title : '';
-            });
-
-            $table->editColumn('student_status.comments', function ($row) {
-                return $row->student_status ? (is_string($row->student_status) ? $row->student_status : $row->student_status->comments) : '';
-            });
-
-            $table->rawColumns(['actions', 'placeholder', 'batch', 'student', 'student_status']);
-
-            return $table->make(true);
-        }
-
-        return view('admin.batchStudents.index');
+        $batches = Batch::all();
+        return view('admin.batchStudents.index',compact('batches'));
     }
 
     public function create()
@@ -115,13 +69,20 @@ class BatchStudentsController extends Controller
         return redirect()->route('admin.batch-students.index');
     }
 
-    public function show(BatchStudent $batchStudent)
+    public function show(Batch $batch)
     {
         abort_if(Gate::denies('batch_student_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+//        $batchStudent->load('batch', 'student', 'student_status');
 
-        $batchStudent->load('batch', 'student', 'student_status');
+        return view('admin.batchStudents.show', compact('batch'));
+    }
 
-        return view('admin.batchStudents.show', compact('batchStudent'));
+    public function batch(Batch $batch)
+    {
+        $batch_students = BatchStudent::with('student')->where('batch_id',$batch->id)->where('student_status_id','1')
+            ->get();
+//        dd($batch_students);
+        return view('admin.batchStudents.show', compact('batch','batch_students'));
     }
 
     public function destroy(BatchStudent $batchStudent)

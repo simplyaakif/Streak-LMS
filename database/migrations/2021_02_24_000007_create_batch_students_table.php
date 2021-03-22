@@ -10,7 +10,7 @@ class CreateBatchStudentsTable extends Migration
     {
         Schema::create('batch_students', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('sessions_start_date');
+            $table->date('session_start_date');
             $table->date('session_end_date');
             $table->timestamps();
             $table->softDeletes();

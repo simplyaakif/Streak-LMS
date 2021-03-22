@@ -59,6 +59,11 @@ class Batch extends Model implements HasMedia
         return $this->belongsTo(Course::class, 'course_id');
     }
 
+    public function batch_students()
+    {
+        return $this->hasMany(BatchStudent::class, );
+    }
+
     public function getBatchContentAttribute()
     {
         return $this->getMedia('batch_content');

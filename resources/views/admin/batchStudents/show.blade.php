@@ -1,79 +1,35 @@
 @extends('layouts.admin')
 @section('content')
 
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.batchStudent.title') }}
-    </div>
-
-    <div class="card-body">
-        <div class="form-group">
-            <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.batch-students.index') }}">
-                    {{ trans('global.back_to_list') }}
-                </a>
-            </div>
-            <table class="table table-bordered table-striped">
+    <div class="card">
+        <div class="card-header">
+            <h4>{{$batch->title}}</h4>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <td>Sr. No.</td>
+                    <td>Name</td>
+                    <td>Start Date</td>
+                    <td>End Date</td>
+                    <td>View</td>
+                </tr>
+                </thead>
                 <tbody>
+                @foreach($batch_students as $batch_student)
                     <tr>
-                        <th>
-                            {{ trans('cruds.batchStudent.fields.id') }}
-                        </th>
-                        <td>
-                            {{ $batchStudent->id }}
-                        </td>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$batch_student->student->name}}</td>
+                        <td>{{$batch_student->session_start_date}}</td>
+                        <td>{{$batch_student->session_end_date}}</td>
+                        <td><a href="{{route('admin.students.show',['student'=>$batch_student->student])}}">View</a></td>
                     </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.batchStudent.fields.batch') }}
-                        </th>
-                        <td>
-                            {{ $batchStudent->batch->title ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.batchStudent.fields.student') }}
-                        </th>
-                        <td>
-                            {{ $batchStudent->student->name ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.batchStudent.fields.sessions_start_date') }}
-                        </th>
-                        <td>
-                            {{ $batchStudent->sessions_start_date }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.batchStudent.fields.session_end_date') }}
-                        </th>
-                        <td>
-                            {{ $batchStudent->session_end_date }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.batchStudent.fields.student_status') }}
-                        </th>
-                        <td>
-                            {{ $batchStudent->student_status->status_title ?? '' }}
-                        </td>
-                    </tr>
+                @endforeach
                 </tbody>
             </table>
-            <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.batch-students.index') }}">
-                    {{ trans('global.back_to_list') }}
-                </a>
-            </div>
         </div>
     </div>
-</div>
-
 
 
 @endsection

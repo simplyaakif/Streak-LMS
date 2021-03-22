@@ -82,6 +82,7 @@
                             @endif
                         </div>
                     </li>
+                    <li><span class="ml-5">{{Auth::user()->name}}</span></li>
                 </ul>
 
             </ul>

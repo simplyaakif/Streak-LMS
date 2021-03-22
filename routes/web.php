@@ -131,6 +131,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('batch-students/process-csv-import', 'BatchStudentsController@processCsvImport')->name('batch-students.processCsvImport');
     Route::resource('batch-students', 'BatchStudentsController');
 
+    Route::get('batch-wise-students/{batch}','BatchStudentsController@batch')->name('batch-wise-students');
+
+
+
+
     // Student Statuses
     Route::delete('student-statuses/destroy', 'StudentStatusController@massDestroy')->name('student-statuses.massDestroy');
     Route::resource('student-statuses', 'StudentStatusController');
@@ -302,8 +307,8 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     Route::resource('user-alerts', 'UserAlertsController', ['except' => ['edit', 'update']]);
 
     // Task Statuses
-    Route::delete('task-statuses/destroy', 'TaskStatusController@massDestroy')->name('task-statuses.massDestroy');
-    Route::resource('task-statuses', 'TaskStatusController');
+//    Route::delete('task-statuses/destroy', 'TaskStatusController@massDestroy')->name('task-statuses.massDestroy');
+//    Route::resource('task-statuses', 'TaskStatusController');
 
     // Task Tags
     Route::delete('task-tags/destroy', 'TaskTagController@massDestroy')->name('task-tags.massDestroy');
@@ -316,7 +321,7 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     Route::resource('tasks', 'TaskController');
 
     // Tasks Calendars
-    Route::resource('tasks-calendars', 'TasksCalendarController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+//    Route::resource('tasks-calendars', 'TasksCalendarController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
 
     // Expense Categories
     Route::delete('expense-categories/destroy', 'ExpenseCategoryController@massDestroy')->name('expense-categories.massDestroy');

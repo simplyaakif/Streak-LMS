@@ -10,6 +10,7 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
             $table->string('father_name')->nullable();
             $table->string('gender')->nullable();
             $table->string('nationality')->nullable();
@@ -20,7 +21,6 @@ class CreateStudentsTable extends Migration
             $table->string('mobile');
             $table->string('email')->nullable();
             $table->string('landline')->nullable();
-            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
         });

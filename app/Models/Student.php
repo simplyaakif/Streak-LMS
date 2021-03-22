@@ -100,4 +100,7 @@ class Student extends Model implements HasMedia
     {
         return $this->getMedia('admission_form');
     }
+    public function batches(){
+        return $this->belongsToMany(Batch::class,'batch_students');
+    }
 }
